@@ -72,10 +72,8 @@ const Register = () => {
           Register
         </button>
         <Link to="/login">
-      <button className="w-32 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        Login
-      </button>
-    </Link>
+          <p className="text-sm text-white hover:text-blue-600">Already have an account?</p>
+        </Link>
         </div>
       </form>
     </div>

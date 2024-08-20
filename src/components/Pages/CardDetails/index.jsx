@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../config/firebase'; 
 import MyLogo from "../../../Images/background/Wave.svg";
@@ -38,37 +38,45 @@ const ProductDetails = () => {
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-center p-4 "
-      style={{
-        backgroundImage: `url(${MyLogo})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <div className="shadow-lg rounded-lg max-w-7xl w-full p-6 bg-indigo-900/30 backdrop-blur-lg space-y-6 lg:flex lg:space-x-6">
-        {/* Details Section */}
-        <div className="">
-          <img 
-            src={product.photoURL} 
-            alt={product.photoURL} 
-            className="w-full h-auto rounded-lg object-cover"
-          />
-        </div>
-        <div className="lg:w-1/2 space-y-4 py-10">
-          <h2 className="text-2xl font-extrabold text-white">{product.title}</h2>
-          <p  className="text-1xl font-semibold text-white">Brand: {product.brand}</p>
-          <p className="text-white text-lg">{product.description}</p>
-          <p  className="text-1xl font-semibold text-white">Category: {product.category}</p>
-          <p className="text-1xl font-semibold text-white">Price: ${product.price}</p>
-          <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    className="min-h-screen flex items-center justify-center px-4 sm:px-8"
+    style={{
+      backgroundImage: `url(${MyLogo})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    }}
+  >
+    <div className="flex flex-col md:flex-row justify-center w-full max-w-7xl bg-slate-900/50 backdrop-blur-md rounded-lg overflow-hidden shadow-lg">
+      {/* Image Section */}
+      <div className="md:w-1/2">
+        <img 
+          src={product.photoURL} 
+          alt={product.photoURL} 
+          className="w-full h-auto md:h-full object-cover"
+        />
+      </div>
+
+      {/* Details Section */}
+      <div className="text-white flex flex-col justify-center gap-4 py-6 px-4 md:px-8">
+        <h2 className="text-xl md:text-3xl font-semibold">{product.title}</h2>
+        <p className="text-sm md:text-lg">Brand: {product.brand}</p>
+        <p className="text-sm md:text-lg">{product.description}</p>
+        <p className="text-sm md:text-lg">Category: {product.category}</p>
+        <p className="text-sm md:text-lg font-bold">Price: ${product.price}</p>
+        <div>
+          <button className="bg-blue-600 text-white py-2 px-4 md:px-8 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
             Add to Cart
           </button>
+          
+          <Link to={`/`}>
+            <button className="bg-green-600 m-4 text-white py-2 px-4 md:px-8 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+              Back
+            </button>
+          </Link>
         </div>
-        {/* Image Section */}
-        
       </div>
     </div>
+  </div>
   );
 };
 

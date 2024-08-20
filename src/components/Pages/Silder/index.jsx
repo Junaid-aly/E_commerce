@@ -10,11 +10,9 @@ const CardUsers = () => {
       <section className="bg-transparent backdrop-blur-xl ">
   <div className="container px-6 py-10 mx-auto">
     <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
-      Our Executive Team
+      
     </h1>
-    <p className="max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300">
-    Meet our dedicated Executive Team, driving innovation and excellence in every aspect of our organization. With a wealth of experience and a commitment to success, they lead with vision and integrity. Our leaders are passionate about delivering exceptional results and fostering a culture of collaboration and growth.
-    </p>
+  
     <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-4">
       <div className="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-500 dark:border-gray-700 dark:hover:border-transparent">
         <img
@@ -26,7 +24,7 @@ const CardUsers = () => {
           Waqar Rana
         </h1>
         <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-          design director
+        instructor
         </p>
         <div className="flex mt-3 -mx-2">
           <a
@@ -83,7 +81,7 @@ const CardUsers = () => {
           Arslan Sher
         </h1>
         <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-          Lead Developer
+          Mern Stack Developer
         </p>
         <div className="flex mt-3 -mx-2">
           <a
@@ -140,7 +138,7 @@ const CardUsers = () => {
           Muhammad Sumair
         </h1>
         <p className="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">
-          Lead designer
+        Frontend Developer
         </p>
         <div className="flex mt-3 -mx-2">
           <a

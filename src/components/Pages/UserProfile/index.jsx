@@ -9,14 +9,14 @@ const UserProfileMenu = () => {
   const { onLogout } = use_Auth();
 
   return (
-    <div className="flex" >
+    <div className="flex " >
       <div className="bg-transparent shadow-2xl  rounded-2xl border border-blue-300  px-6  flex justify-center items-center">
         <div
           onClick={() => setIsOpen(!isOpen)}
           className={`relative border-b-4 z-20 border-transparent py-1 cursor-pointer transition-transform duration-300 ${isOpen ? ' transform scale-105' : ''}`}
         >
-          <div className="flex justify-center items-center space-x-3">
-            <div className="w-9 h-9 rounded-full  overflow-hidden border-2 border-gray-900">
+          <div className="flex justify-center items-center space-x-2">
+            <div className="w-9 h-9 rounded-full  overflow-hidden border-2 border-gray-200">
               {authData ? (
                 <img src={authData.photoURL} alt="Profile" />
               ) : (
@@ -32,9 +32,9 @@ const UserProfileMenu = () => {
             </div>
           </div>
           <div
-            className={`absolute w-auto px-3 py-3 left- -inset-x-6 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5 transition-transform duration-300 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} ${isOpen ? 'block' : 'hidden'}`}
+            className={`absolute w-auto px-3 py-3 left- -inset-x-6 bg-white text-black rounded-lg shadow border dark:border-transparent mt-5 transition-transform duration-300 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} ${isOpen ? 'block' : 'hidden'}`}
           >
-            <ul className="space-y-3 dark:text-white">
+            <ul className="space-y-3">
               <li className="font-medium">
                 <Link
                   to="#"

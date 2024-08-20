@@ -21,7 +21,7 @@ export const use_Auth = () => {
       if (displayName) {
         await updateProfile(user, { displayName });
       }
-      
+      toast.success("Successfully registered")
       console.log('User registered:', user);
       
     } catch (error) {

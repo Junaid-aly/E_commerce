@@ -5,12 +5,19 @@ import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../config/firebase';
 
 import { getProducts } from "../../../config/usePost";
-import SearchProduct from "../SearchData";
+
+import { useAuth } from "../../../Context/AuthContext";
+
+import { RiDeleteBack2Fill } from "react-icons/ri";
+import toast from 'react-hot-toast';
 
 const ProductsData = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate()
+  const [authData] = useAuth()
+  // console.log(authData)
+  // console.log(products,"products")
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,25 +39,35 @@ const ProductsData = () => {
     const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
     existingProducts.push(product);
     localStorage.setItem("products", JSON.stringify(existingProducts));
-    alert(`${product.title} has been added to the cart!`);
+    toast.success(`${product.title} has been added to the cart!`);
   };
 
   if (loading) {
     return <p>Loading....</p>;
   }
 
+
   const DeleteItem = async (productId) => {
-    try {
-      // Reference to the specific product document
-      const productDocRef = doc(db, 'Products', productId); // Adjust 'products' to your Firestore collection name
-      
-      // Delete the product document
-      await deleteDoc(productDocRef);
+    // Show a confirmation dialog
+    const confirmed = window.confirm("Are you sure you want to delete this product?");
   
-      // Update local state or UI after deletion
+    if (!confirmed) {
+     toast.info('Product deletion cancelled.'); 
+      return;
+    }
+  
+    try {
+      const productDocRef = doc(db, 'Products', productId); 
+      await toast.promise(
+        deleteDoc(productDocRef), 
+        {
+          pending: 'Deleting the product...',
+          success: 'Product has been deleted!',
+          error: 'Failed to delete product.',
+        }
+      );
       setProducts(products.filter(product => product.id !== productId));
-      
-      alert('Product has been deleted!');
+  
     } catch (error) {
       console.error('Error deleting product: ', error);
       alert('Failed to delete product.');
@@ -59,10 +76,7 @@ const ProductsData = () => {
   
   return (
     <div className="w-screen overflow-hidden">
-      <div className="flex justify-start">
-
-        <SearchProduct/>
-      </div>
+     
     <div className="pt-10 flex flex-wrap align-center justify-center gap-4 sm:gap-8  backdrop-blur-2xl  overflow-hidden pb-16">
       <div className="w-screen bg-indigo-500 backdrop-blur-2xl dark:bg-gray-800/50 dark:text-gray-100 py-3 text-white flex items-center justify-between px-3 lg:px-8 mb-4">
         <p className="text-center flex align-center font-small">
@@ -81,8 +95,10 @@ const ProductsData = () => {
             key={product.id}
             className="group relative block overflow-hidden bg-gradient-to-r from-violet-100 to-blue-200 text-white rounded-lg dark:text-white  w-96 sm:w-60 md:w-72 lg:w-80 mb-4"
           >
-            <button onClick={() => DeleteItem(product.id)} className="absolute end-3 top-3 z-10 text-sm font-medium transition hover:scale-105 border-white text-white inline-block rounded-md border border-transparent px-2 py-1 text-center hover:bg-red-700">
-  <i className="uil uil-multiply text-1xl"></i>
+            <button className="absolute end-3 top-3 z-10  font-medium transition hover:scale-105 border-white text-white inline-block rounded-md  border-transparent px-1 text-center hover:bg-red-700">
+
+              {product.userEmail === authData?.email ? <RiDeleteBack2Fill className="text-xl" onClick={() => DeleteItem(product.id)}  /> : ""}
+  
 </button>
 
             <img

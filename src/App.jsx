@@ -6,7 +6,8 @@ import Login from "./components/Auth/Login"
 import Profile from "./components/Pages/Profile"
 import ProductDetails from "./components/Pages/CardDetails"
 import Background from "../src/Images/background/3412810.jpg"
-import CheckoutPage from "./components/Pages/Checkout"
+
+
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
+    
 
         </Routes>
       </BrowserRouter>

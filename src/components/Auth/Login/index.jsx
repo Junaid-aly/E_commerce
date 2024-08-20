@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { use_Auth } from '../use_Auth'; // Ensure this path is correct
 
 import Hexagon from "../../../Images/background/Animated Shape.svg"
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -56,6 +57,9 @@ const Login = () => {
         >
           Login
         </button>
+        <Link to="/signup">
+          <p className="text-base flex items-center justify-end mt-1 text-white hover:text-blue-600">don't have an account</p>
+        </Link>
       </form>
     </div>
   )
